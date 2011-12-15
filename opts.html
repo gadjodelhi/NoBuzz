@@ -1,66 +1,16 @@
 <style>
-	ul, li {
+	.nobuzz,
+	.nobuzz li {
 		list-style: none;
 		display: block;
 		padding: 0;
 		margin: 0;
 	}
-	button.off {
+	.nobuzz button.off {
 		opacity: 0.5;
 	}
 </style>
-<ul>
-	<li><button id="javascript" type="button"><img src="images/icon.png" /></li>
-	<li><button id="plugins" type="button"><img src="images/icon.png" /></li>
-	<li><button id="images" type="button"><img src="images/icon.png" /></li>
-<!--	<li><button id="popups" type="button"><img src="images/icon.png" /></li>-->
-</ul>	
-<script>
-	var i, buttons = document.querySelectorAll('button');
-	var contentSettings = chrome.contentSettings || chrome.experimental.contentSettings;
-	
-	var options = {
-		showNotificatons: true
-	};
-	
-	function updateUI(button, value, notification) {
-		if (options.showNotifications && notification) {
-			webkitNotifications.createNotification('images/icon.png', 'Setting changed', button.id + ": " + value).show();
-		}
-		
-		button.setAttribute('title', button.id + ": " + value + ", click to change");
-		if (value === 'block') {
-			button.classList.add('off');
-		}
-		else {
-			button.classList.remove('off');
-		}
-	}
-	
-	function getState(button, notification) {
-		contentSettings[button.id].get({
-			primaryUrl: "http://*"
-		}, function (details) {
-			updateUI(button, details.setting, notification);
-		});
-	};
-	
-	function setState(button, value) {
-		updateUI(button, value, false);
-		contentSettings[button.id].set({
-			primaryPattern: "<all_urls>",
-			setting: value
-		}, function (details) {
-			getState(button, true);
-		});
-	};
-	
-	for (i = buttons.length - 1; i >= 0; i--) {
-		(function (button) {
-			getState(button);
-			button.addEventListener('click', function (event) {
-				setState(button, button.classList.contains('off') ? "allow" : "block");
-			}, false);
-		}(buttons[i]));
-	}
-</script>
+
+<div id="nobuzz" />
+
+<script src="js/nobuzz.js"></script>
