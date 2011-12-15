@@ -67,7 +67,6 @@ function setState(button, value, event) {
 		setting: value
 	}, function () {
 		getState(button, true);
-		console.log(event);
 		if (options.autoRefresh === 'yes' || (event && event[options.autoRefresh + "Key"])) {
 			chrome.tabs.reload();
 		}
