@@ -1,3 +1,10 @@
-This won't be doable until the feature is settings changing is implemented in Chrome
-
-http://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/api/contentSettings/popup.js?revision=107084
+TODO:
+- icons
+- js to external file
+- settings page
+	- showNotifications
+	- show: JavaScript/Plugins/Images/Popups/Notifications
+	- autoRefreshPage (no, yes, withShift)
+	
+Documentation:
+http://code.google.com/chrome/extensions/contentSettings.html
