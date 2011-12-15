@@ -2,7 +2,7 @@ var i, buttons = document.querySelectorAll('button');
 var contentSettings = chrome.contentSettings || chrome.experimental.contentSettings;
 var options = {
 	showNotifications: "no", // yes, no
-	autoRefresh: "yes", // yes, no
+	autoRefresh: "shift", // yes, no, ctrl, alt, shift
 	icons: [ // javascript, plugins, images, popups, notifications
 		"javascript",
 		"plugins",
@@ -11,20 +11,20 @@ var options = {
 };
 
 function createUI() {
-	var i, list = document.createElement('ul'), listItem, button, icon;
+	var name, list = document.createElement('ul'), listItem, button, icon;
 	list.classList.add('nobuzz');
 	
-	for (i in options.icons) {
+	for (name in options.icons) {
 		icon = document.createElement('img');
-		icon.src = 'images/' + 'icon' /* options.icons[i] */ + '.png';
+		icon.src = 'images/' + 'icon' /* options.icons[name] */ + '.png';
 		
 		button = document.createElement('button');
 		button.type = 'button';
-		button.id = options.icons[i];
+		button.id = options.icons[name];
 		getState(button);
 		(function (button) {
 			button.addEventListener('click', function (event) {
-				setState(button, button.classList.contains('off') ? "allow" : "block");
+				setState(button, button.classList.contains('off') ? "allow" : "block", event);
 			}, false);
 		}(button));
 		button.appendChild(icon);
@@ -60,22 +60,16 @@ function getState(button, notification) {
 	});
 };
 
-function setState(button, value) {
+function setState(button, value, event) {
 	updateUI(button, value, false);
 	contentSettings[button.id].set({
 		primaryPattern: "<all_urls>",
 		setting: value
 	}, function () {
 		getState(button, true);
-		if (options.autoRefresh === 'yes') {
-			if (chrome.tabs.reload) {
-				chrome.tabs.reload();
-			}
-			else {
-				chrome.tabs.executeScript(null, {
-					code: "document.location = document.location"
-				});
-			}
+		console.log(event);
+		if (options.autoRefresh === 'yes' || (event && event[options.autoRefresh + "Key"])) {
+			chrome.tabs.reload();
 		}
 	});
 };
