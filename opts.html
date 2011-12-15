@@ -1,0 +1,24 @@
+<style>
+	ul, li {
+		list-style: none;
+		display: block;
+		padding: 0;
+		margin: 0;
+	}
+	button.off {
+		opacity: 0.5;
+	}
+</style>
+<ul>
+	<li><button id="javascript" type="button"><img src="images/icon.png" title="Turn on/off JavaScript" /></li>
+	<li><button id="flash" type="button"><img src="images/icon.png" title="Turn on/off Flash" /></li>
+	<li><button id="css" type="button"><img src="images/icon.png" title="Turn on/off CSS" /></li>
+</ul>	
+<script>
+	var i, buttons = document.querySelectorAll('button');
+	for (i = buttons.length - 1; i >= 0; i--) {
+		buttons[i].addEventListener('click', function (event) {
+			this.classList.toggle('off');
+		}, false);
+	}
+</script>
