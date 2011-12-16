@@ -1,33 +1,40 @@
 var i, buttons = document.querySelectorAll('button');
 var contentSettings = chrome.contentSettings || chrome.experimental.contentSettings;
+var states = {
+	"javascript": ["allow", "block"],
+	"plugins": ["allow", "block"],
+	"images": ["allow", "block"],
+	"cookies": ["allow", "block", "session_only"],
+	"popups": ["allow", "block"],
+	"notifications": ["allow", "block", "ask"]
+};
 var options = {
 	showNotifications: "no", // yes, no
 	autoRefresh: "shift", // yes, no, ctrl, alt, shift
 	icons: [ // javascript, plugins, images, popups, notifications
-		"javascript",
-		"plugins",
-		"images"
+		"javascript", // allow, block
+		"plugins", // allow, block
+		"images", // allow, block
+		"cookies", // allow, block, session_only,
+		"popups", // allow, block
+		"notifications", // allow, block, ask
 	]
 };
 
 function createUI() {
-	var name, list = document.createElement('ul'), listItem, button, icon;
+	var name, list = document.createElement('ul'), listItem, button;
 	list.classList.add('nobuzz');
 	
 	for (name in options.icons) {
-		icon = document.createElement('img');
-		icon.src = 'images/' + 'icon' /* options.icons[name] */ + '.png';
-		
-		button = document.createElement('button');
-		button.type = 'button';
+		button = document.createElement('img');
 		button.id = options.icons[name];
+		button.src = 'images/' + options.icons[name] + '.png';
 		getState(button);
 		(function (button) {
 			button.addEventListener('click', function (event) {
-				setState(button, button.classList.contains('off') ? "allow" : "block", event);
+				setState(button, getNextState(button), event);
 			}, false);
 		}(button));
-		button.appendChild(icon);
 
 		listItem = document.createElement('li');
 		listItem.appendChild(button);
@@ -38,18 +45,18 @@ function createUI() {
 	document.getElementById('nobuzz').appendChild(list);
 }
 
+function getNextState(button) {
+	var optionStates = states[button.id];
+	return optionStates[(optionStates.indexOf(button.className) + 1) % optionStates.length];
+}
+
 function updateUI(button, value, notification) {
 	if ((options.showNotifications === 'yes') && notification) {
 		webkitNotifications.createNotification('images/icon.png', 'Setting changed', button.id + ": " + value).show();
 	}
 	
 	button.title = button.id + ": " + value + ", click to change";
-	if (value === 'block') {
-		button.classList.add('off');
-	}
-	else {
-		button.classList.remove('off');
-	}
+	button.className = value;
 }
 
 function getState(button, notification) {

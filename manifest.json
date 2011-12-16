@@ -1,6 +1,6 @@
 {
 	"name": "NoBuzz",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"description": "Quikly turn on/off JavaScript, Flash, images, ...",
 	"browser_action": {
 		"default_icon": "images/icon.png",
