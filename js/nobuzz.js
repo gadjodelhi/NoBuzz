@@ -13,7 +13,6 @@ var options = {
 	autoRefresh: get_option('autoRefresh'),
 	icons: get_option('icons')
 };
-console.log(options);
 
 function createUI() {
 	var name, list = document.createElement('ul'), listItem, button;

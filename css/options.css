@@ -1,0 +1,33 @@
+form {
+	padding: 2em;
+}
+
+label {
+	display: block;
+	font-weight: bold;
+}
+
+label[for] {
+	float: left;
+	width: 16em;
+	text-align: right;
+	clear: left;
+	font-weight: normal;
+	padding-right: 0.7em;
+}
+
+input,
+select {
+	float: left;
+}
+
+div {
+	margin-bottom: 1em;
+	padding-top: 1em;
+	overflow: hidden;
+	border-top: 1px solid #ccc;
+}
+
+div:first-child {
+	border: none;
+}

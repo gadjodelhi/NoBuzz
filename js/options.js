@@ -23,7 +23,7 @@
 			return ({'always': true, 'shift': true, 'alt': true, 'ctrl': true}[value]) ? value : 'never';
 		}
 		if (option === 'icons') {
-			if (typeof value !== 'array') {
+			if (!value || value.constructor !== Array) {
 				return ["javascript", "plugins", "images", "cookies", "popups", "notifications"];
 			}
 			return value;

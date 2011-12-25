@@ -1,9 +1,3 @@
-TODO:
-- settings page
-	- showNotifications
-	- show: JavaScript/Plugins/Images/Popups/Notifications
-	- autoRefreshPage (no, yes, shift, ctrl/cmd, alt)
-
 NOTE
 ================================================================
 Extension works only if the Chrome is started with --enable-experiment-extension-apis option
@@ -23,3 +17,5 @@ Extension works only if the Chrome is started with --enable-experiment-extension
 - more button states possible (no, yes, ask, session_only)
 - better icons
 
+0.3.0
+- settings page
