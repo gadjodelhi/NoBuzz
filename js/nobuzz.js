@@ -28,7 +28,7 @@ function createUI() {
 	for (name in options.icons) {
 		button = document.createElement('img');
 		button.id = options.icons[name];
-		button.src = 'images/' + options.icons[name] + '.png';
+		button.src = '../images/' + options.icons[name] + '.png';
 		getState(button);
 		(function (button) {
 			button.addEventListener('click', function (event) {

@@ -4,7 +4,7 @@
 	"description": "Quikly turn on/off JavaScript, Flash, images, ...",
 	"browser_action": {
 		"default_icon": "images/icon.png",
-		"default_popup": "nobuzz.html"
+		"default_popup": "html/nobuzz.html"
 	},
 	"permissions": [
 		"contentSettings", "experimental", "notifications", "tabs", "http://*/*", "https://*/*"

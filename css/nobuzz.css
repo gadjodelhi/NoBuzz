@@ -1,0 +1,24 @@
+.nobuzz,
+.nobuzz li {
+	list-style: none;
+	display: block;
+	padding: 0;
+	margin: 0;
+}
+.nobuzz img {
+	cursor: pointer;
+	margin: 4px;
+	padding: 4px;
+	background: -webkit-linear-gradient(top, rgba(255, 255, 0, 1), rgba(255, 255, 0, 0.3));
+	border: 1px solid #888;
+	border-radius: 3px;
+}
+.nobuzz img.block {
+	background: -webkit-linear-gradient(top, rgba(255, 128, 0, 1), rgba(255, 128, 0, 0.3));
+}
+.nobuzz img.allow {
+	background: -webkit-linear-gradient(top, rgba(64, 255, 100, 1), rgba(64, 255, 100, 0.3));
+}
+.nobuzz img:hover {
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
