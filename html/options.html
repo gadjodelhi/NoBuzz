@@ -1,0 +1,30 @@
+<title>NoBuzz Options</title>
+
+<form id="options">
+	<div>
+		<label for="showNotifications">Show notifications</label><input type="checkbox" id="showNotifications" name="showNotifications" />
+	</div>
+	
+	<div>
+		<label for="autoRefresh">Refresh page after option change</label>
+		<select id="autoRefresh" name="autoRefresh">
+			<option value="always">Always</option>
+			<option value="never">Never</option>
+			<option value="shift">With pressed Shift key</option>
+			<option value="alt">With pressed Alt key</option>
+			<option value="ctrl">With pressed Ctrl/Cmd key</option>
+		</select>
+	</div>
+	
+	<div>
+		<label>Show options</label>
+		<label for="icons-javascript">Javascript</label><input type="checkbox" id="icons-javascript" name="icons-javascript" />
+		<label for="icons-plugins">Plugins</label><input type="checkbox" id="icons-plugins" name="icons-plugins" />
+		<label for="icons-images">Images</label><input type="checkbox" id="icons-images" name="icons-images" />
+		<label for="icons-cookies">Cookies</label><input type="checkbox" id="icons-cookies" name="icons-cookies" />
+		<label for="icons-popups">Popups</label><input type="checkbox" id="icons-popups" name="icons-popups" />
+		<label for="icons-notifications">Notifications</label><input type="checkbox" id="icons-notifications" name="icons-notifications" />
+	</div>
+</form>
+
+<script src="../js/options.js"></script>

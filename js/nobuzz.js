@@ -9,17 +9,11 @@ var states = {
 	"notifications": ["allow", "block", "ask"]
 };
 var options = {
-	showNotifications: "no", // yes, no
-	autoRefresh: "shift", // yes, no, ctrl, alt, shift
-	icons: [ // javascript, plugins, images, popups, notifications
-		"javascript", // allow, block
-		"plugins", // allow, block
-		"images", // allow, block
-		"cookies", // allow, block, session_only,
-		"popups", // allow, block
-		"notifications", // allow, block, ask
-	]
+	showNotifications: get_option('showNotifications'),
+	autoRefresh: get_option('autoRefresh'),
+	icons: get_option('icons')
 };
+console.log(options);
 
 function createUI() {
 	var name, list = document.createElement('ul'), listItem, button;
@@ -74,7 +68,7 @@ function setState(button, value, event) {
 		setting: value
 	}, function () {
 		getState(button, true);
-		if (options.autoRefresh === 'yes' || (event && event[options.autoRefresh + "Key"])) {
+		if (options.autoRefresh === 'always' || (event && event[options.autoRefresh + "Key"])) {
 			chrome.tabs.reload();
 		}
 	});
